@@ -7,10 +7,10 @@ import {
   StatusBar,
 } from 'react-native';
 
-
 import CurrentPrice from './src/components/CurrentPrice';
 import HistoryGraphic from './src/components/HistoryGraphic';
 import QuotationsList from './src/components/QuotationsList';
+import QuotationsItem from './src/components/QuotationsList/QuotationsItem';
 
 export default function App() {
   return (
@@ -22,6 +22,7 @@ export default function App() {
       <CurrentPrice />
       <HistoryGraphic />
       <QuotationsList />
+      <QuotationsItem />
     </SafeAreaView>
   );
 }
