@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-export default function QuotationsItem() {
+export default function QuotationsItem(props) {
   return (
     <View style={styles.mainContent}>
       <View style={styles.contextLeft}>
