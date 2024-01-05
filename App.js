@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import CurrentPrice from './src/components/CurrentPrice';
 import HistoryGraphic from './src/components/HistoryGraphic';
 import QuotationsList from './src/components/QuotationsList';
-import QuotationsItem from './src/components/QuotationsList/QuotationsItem';
 
 function addZero(number) {
   if (number <= 9) {
@@ -17,6 +16,41 @@ function addZero(number) {
   } 
   return number;
 };
+
+function simulatedApiResponse () {
+  return {
+    "bpi": {
+      "2023-09-01": 128.2597,
+      "2023-10-02": 127.3648,
+      "2023-11-02": 127.3648,
+      "2023-12-03": 127.5915,
+      "2023-13-04": 120.5738,
+      "2023-14-02": 127.3648,
+      "2023-15-05": 120.5333
+    },
+  }
+};
+
+// async function getListCoins(url) {
+//   let selectListQuotations = simulatedApiResponse().bpi;
+//   const queryCoinsList = Object.keys(selectListQuotations).map((key) => {
+//     return {
+//       data: key.split('-').reverse().join('/'),
+//       valor: selectListQuotations[key],
+//     };
+//   });
+//   let data = queryCoinsList.reverse();
+//   return data; 
+// };
+
+// async function getPriceCoinsGraphic(url) {
+//   let selectListQuotationsG = simulatedApiResponse().bpi;
+//   const queryCoinsList = Object.keys(selectListQuotationsG).map((key) => {
+//     return selectListQuotationsG[key];
+//   });
+//   let dataG = queryCoinsList;
+//   return dataG;
+// };
 
 function url (qtdDays) {
   const date = new Date();
@@ -30,6 +64,8 @@ function url (qtdDays) {
 
   return `https://api.coindesk.com/v1/bpi/historical/close.json?start=${start_date}&end=${end_date}` 
 };
+
+// Funções para retornar a API
 
 async function getListCoins(url) {
   let response = await fetch(url);
@@ -59,7 +95,7 @@ async function getPriceCoinsGraphic(url) {
 export default function App() {
   const [coinsList, setCoinsList] = useState([]);
   const [coinsGraphicList, setCoinsGraphicList] = useState([0]);
-  const [days, setDays] = useState(2);
+  const [days, setDays] = useState(7);
   const [updateData, setUpdateData] = useState(true);
 
   function updateDay(number) {

@@ -14,11 +14,11 @@ export default function QuotationsItem(props) {
             style={styles.image}
             source={require('../../../img/bitcoin.png')}
           /> 
-          <Text style={styles.dayCotation}>03/01/2024</Text>
+          <Text style={styles.dayCotation}>{props.data}</Text>
         </View>
       </View>
       <View style={styles.contextRight}>
-        <Text style={styles.price}>R$ 252,681</Text>
+        <Text style={styles.price}>R${props.valor}</Text>
       </View>
     </View>
   );
