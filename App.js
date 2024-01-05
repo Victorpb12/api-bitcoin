@@ -17,19 +17,19 @@ function addZero(number) {
   return number;
 };
 
-function simulatedApiResponse () {
-  return {
-    "bpi": {
-      "2023-09-01": 128.2597,
-      "2023-10-02": 127.3648,
-      "2023-11-02": 127.3648,
-      "2023-12-03": 127.5915,
-      "2023-13-04": 120.5738,
-      "2023-14-02": 127.3648,
-      "2023-15-05": 120.5333
-    },
-  }
-};
+// function simulatedApiResponse () {
+//   return {
+//     "bpi": {
+//       "2023-09-01": 128.2597,
+//       "2023-10-02": 127.3648,
+//       "2023-11-02": 127.3648,
+//       "2023-12-03": 127.5915,
+//       "2023-13-04": 120.5738,
+//       "2023-14-02": 127.3648,
+//       "2023-15-05": 120.5333
+//     },
+//   }
+// };
 
 // async function getListCoins(url) {
 //   let selectListQuotations = simulatedApiResponse().bpi;
@@ -97,10 +97,15 @@ export default function App() {
   const [coinsGraphicList, setCoinsGraphicList] = useState([0]);
   const [days, setDays] = useState(7);
   const [updateData, setUpdateData] = useState(true);
+  const [price, setPrice] = useState();
 
   function updateDay(number) {
     setDays(number);
     setUpdateData(true);
+  };
+
+  function priceCotation () {
+    setPrice(coinsGraphicList.pop());
   };
 
   useEffect(() => {
@@ -111,7 +116,7 @@ export default function App() {
     getPriceCoinsGraphic(url(days)).then((dataG) => {
       setCoinsGraphicList(dataG);
     });
-
+    priceCotation();
     if (updateData) {
       setUpdateData(false);
     };
@@ -124,8 +129,8 @@ export default function App() {
         backgroundColor='#f50d41'
         barStyle='dark-content'
       />
-      <CurrentPrice />
-      <HistoryGraphic />
+      <CurrentPrice currentPrice={price}/>
+      <HistoryGraphic infoDataGraphic={coinsGraphicList} />
       <QuotationsList filterDay={updateDay} listTransactions={coinsList} />
     </SafeAreaView>
   );

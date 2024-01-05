@@ -56,19 +56,15 @@ export default function QuotationsList(props) {
           </Text>
         </TouchableOpacity>
       </View>
-      <ScrollView>
-        <FlatList 
-          data={props.listTransactions}
-          renderItem={({item}) => {
-            return (
-              <QuotationsItem
-                valor={item.valor}
-                data={item.data}
-              />
-            );
-          }}
-        />
-      </ScrollView> 
+      <FlatList
+        data={props.listTransactions}
+        renderItem={({ item }) => (
+          <QuotationsItem
+            valor={item.valor}
+            data={item.data}
+          />
+        )}
+      />
     </Fragment>
   );
 };
